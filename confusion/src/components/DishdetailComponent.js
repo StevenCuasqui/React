@@ -5,32 +5,29 @@ class DishDetail extends Component{
 
     constructor(props){
         super(props)
-        this.state = {
-            dish: this.props.selectedDish
-        }
     }
 
     render(){
-        if (this.state.dish != null) {
+        if (this.props.dish != null) {
           return (
-              <div className="row">
-                  <div className="col-12 col-md-5 m-1">
-                    <Card>
-                        <CardImg width="100%" src={this.state.dish.image} alt={this.state.dish.name}/>
-                        <CardBody>
-                            <CardTitle>{this.state.dish.name}</CardTitle>
-                            <CardText>{this.state.dish.description}</CardText>
-                        </CardBody>
-                    </Card>
-                  </div>
-                  <div className="col-12 col-md-5 m-1">
-                    <h4>Comments</h4>
-                    {this.renderComments(this.state.dish.comments)}
-                  </div>
-                    
-              </div>
-                    
-            
+              <div class="container">
+                <div className="row">
+                    <div className="col-12 col-md-5 m-1">
+                        <Card>
+                            <CardImg width="100%" src={this.props.dish.image} alt={this.props.dish.name}/>
+                            <CardBody>
+                                <CardTitle>{this.props.dish.name}</CardTitle>
+                                <CardText>{this.props.dish.description}</CardText>
+                            </CardBody>
+                        </Card>
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        <h4>Comments</h4>
+                        {this.renderComments(this.props.dish.comments)}
+                    </div>
+                                    
+                </div>
+              </div>        
         );  
         } else {
             return(
@@ -49,7 +46,7 @@ class DishDetail extends Component{
                     <div key={element.id}>
                         <ul  className="list-unstyled">
                             <li>{element.comment}</li>
-                            <li>-- {element.author} , {element.date}</li>
+                            <li>-- {element.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(element.date)))}</li>
                         </ul>
                     </div>
                 ); 
