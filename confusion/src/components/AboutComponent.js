@@ -10,9 +10,7 @@ function About(props) {
                 <div className="row">
                     <RenderLeader item={leader}/>
                 </div>
-            </div>
-            
-            
+            </div>    
         );
     });
 
